@@ -25,9 +25,15 @@ jobs:
       run: |
         docker login -u $DOCKERU -p $DOCKERP
     
-    #Read version file
-    - name: Get Version
+    #Read version file and build
+    - name: Build Image
       run: |
         export MYVERSION=`cat ./VERSION`
         docker build -t tokynet/logspout-gelf:${MYVERSION} . 
+        docker push tokynet/logspout-gelf:${MYVERSION}
+
+    #Read version file and push image
+    - name: Push Image
+      run: |
+        export MYVERSION=`cat ./VERSION`
         docker push tokynet/logspout-gelf:${MYVERSION}
