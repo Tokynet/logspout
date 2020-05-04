@@ -26,12 +26,16 @@ jobs:
         docker login -u $DOCKERU -p $DOCKERP
     
     #Read version file
-    - name: Get Version
-      run: |
-        export MYVERSION=`cat ./VERSION`
+    # - name: Get Version
+    #   env:
+    #     MYVERSION:
+    #   run: |
+    #     export MYVERSION=`cat ./VERSION`
         
     #Build ze containerz
     - name: Docker build
+      env:
+        MYVERSION: ${{ cat ./VERSION }}
       run: |
         docker build -t tokynet/logspout-gelf:$MYVERSION . 
 
