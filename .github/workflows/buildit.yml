@@ -29,5 +29,5 @@ jobs:
     - name: Get Version
       run: |
         export MYVERSION=`cat ./VERSION`
-        docker build -t tokynet/logspout-gelf:${{MYVERSION}} . 
-        docker push tokynet/logspout-gelf:${{MYVERSION}}
+        docker build -t tokynet/logspout-gelf:${MYVERSION} . 
+        docker push tokynet/logspout-gelf:${MYVERSION}
