@@ -27,15 +27,7 @@ jobs:
     
     #Read version file
     - name: Get Version
-      run: export MYVERSION=`cat ./VERSION`
-        
-    #Build ze containerz
-    - name: Docker build
       run: |
+        export MYVERSION=`cat ./VERSION`
         docker build -t tokynet/logspout-gelf:${{MYVERSION}} . 
-
-    # Push to docker hub
-    - name: Docker push
-      run: |
         docker push tokynet/logspout-gelf:${{MYVERSION}}
-
